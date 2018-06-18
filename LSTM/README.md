@@ -1,5 +1,4 @@
-# Haakon_* doc
-@author: Haakon
+@author: Haakom
 
 ## Requirements:
 * Python 3.5
@@ -13,12 +12,12 @@
   * [wand](https://docs.wand-py.org/en/0.4.4/)
   
 For anaconda environments see:
-- HUNT_Haakom/anaconda_tensorflow_python035_cpu.yml
-- HUNT_Haakom/anaconda_tensorflow_python035_gpu.yml
+- anaconda_tensorflow_python035_cpu.yml
+- anaconda_tensorflow_python035_gpu.yml
   
 ###Project structure:
 
-Haakon_Recurrent_ANN:
+Recurrent_ANN:
    - pipeline_convert_train_and_predict.py. Converts raw (.cwa) data, located in a user specified folder  to .csv files 
    and stores it in another specified folder. Then trains a LSTM recurrent network on a specified training dataset and 
    stores the network as well as a confusion matrix over the training data. Finally uses the newly trained network to do
@@ -38,11 +37,11 @@ Haakon_Recurrent_ANN:
    subject.
    
     For all pipelines:
-    1. Confusion matrix, if training, is found in /Haakon_Recurrent_ANN/confusion_matrices/
-    2. Prediction .csvs are found in /Haakon_Recurrent_ANN/Predictions/(timestamp)/
-    3. Prediction plots are found in /Haakon_Recurrent_ANN/plots/(timestamp)/
-    4. Trained model, if training, is found in /Haakon_Recurrent_ANN/Trained_Models/
-    5. Model weights, if training, are found in /Haakon_Recurrent_ANN/Trained_Models_Weights/
+    1. Confusion matrix, if training, is found in /Recurrent_ANN/confusion_matrices/
+    2. Prediction .csvs are found in /Recurrent_ANN/Predictions/(timestamp)/
+    3. Prediction plots are found in /Recurrent_ANN/plots/(timestamp)/
+    4. Trained model, if training, is found in /Recurrent_ANN/Trained_Models/
+    5. Model weights, if training, are found in /Recurrent_ANN/Trained_Models_Weights/
    
    - predict.py. Builds a network, loads pretrained weights into the network and uses the network to predict
     activities over a list of predict_subjects. Finally calls for a plot of the predictions to be
@@ -94,7 +93,7 @@ Haakon_Recurrent_ANN:
    - TRAINING_VARIABLES.py. Builds the path to the training dataset and returns it. Also contains a dictionary
     of relabeling rules for the training dataset.
 
-Haakon_data_analysis: 
+Data_analysis: 
   >Contains a set of helper files to analyse datasets.
   - find_normalizing_stats.py. Takes a specified dataset and finds the normalization means and standard deviations for 
   each channel(acceleration axis).
@@ -110,7 +109,7 @@ Haakon_data_analysis:
   
   - fetch_dataframe_stats.py. Returns the mean and var of a pandas dataframe.
   
-Haakon_downsampling:
+Downsampling:
   
   - downsample_dataset.py. Takes a specified dataset and downsamples it using all the different downsampling
   functions specified in downsampling_functions.py. Then saves each downsampled version to its own folder in
