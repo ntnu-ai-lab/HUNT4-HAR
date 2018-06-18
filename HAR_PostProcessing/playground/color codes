@@ -1,0 +1,29 @@
+sedentary: white
+    8: "lying",                     color: white
+
+inactive: yellow
+    3: "shuffling",                 color: palegoldenrod
+    6: "standing",                  color: goldenrod
+    7: "sitting",                   color: khaki
+    18: "Car"                       color: burlywood1
+
+moderate: green
+    1: "walking",                   color: forestgreen
+    4: "stairs (ascending)",        color: yellowgreen
+    5: "stairs (descending)",       color: aquamarine
+    10: "bending",                  color: limegreen
+    11: "picking",                  color: mediumseagreen
+    13: "cycling (sit)",            color: c
+    14: "cycling (stand)",          color: darkcyan
+    17: "non-vigorous activity",    color: PaleGreen4
+
+vigorous: purple
+    2: "running",                   color: purple
+    16: "vigorous activity",        color: maroon3
+
+other: grey
+    9: "transition",                color: ivory2
+    12: "undefined",                color: ivory3
+    15: "heel drop",                color: honeydew2
+
+
