@@ -1,0 +1,3 @@
+[submodule "docker_inference"]
+	path = docker_inference
+	url = git@github.com:sherilan/har_sverre.git
