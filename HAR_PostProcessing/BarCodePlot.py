@@ -10,8 +10,7 @@ root_dir = os.path.dirname(os.path.abspath(__file__))
 
 def print_weekly_view(filename):
 
-    #maxSampleDay = 14400 # 14400 for 50Hz - assumes only missing data the first and the last day
-    maxSampleDay = 28800 # 28800 for 100Hz - assumes only missing data the first and the last day
+    maxSampleDay = 14400 # 14400 for 50Hz - assumes only missing data the first and the last day
 
     subject_file = os.path.join(root_dir, filename)
     subjectid = list(map(int, re.findall('\d+', filename))).pop().__str__()

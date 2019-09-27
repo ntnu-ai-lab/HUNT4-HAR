@@ -5,7 +5,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #filename = "../output/validparticipants-hashedid.csv"
+#filename = "/Volumes/LaCie/h4-sum-minutes.csv"
 filename = "../output/h4-sum-minutes.csv"
+filename = "../output/AAAAAA-summary-all-classes.csv"
 root_dir = os.path.dirname(os.path.abspath(__file__))
 subject_file = os.path.join(root_dir, filename)
 
@@ -48,6 +50,7 @@ fig.savefig('plots/boxplot.png')
 
 ##################################################################
 # get the data
+print(validparticipants.head())
 walkingbyday = validparticipants[['date','walking']].sort_values('date')
 ax = walkingbyday.groupby(walkingbyday.date).mean().plot()
 

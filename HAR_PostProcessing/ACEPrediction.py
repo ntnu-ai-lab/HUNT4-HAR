@@ -41,11 +41,13 @@ def create_predictions(filename, path, freq=50):
         if 'T' in thighfile:
             if 'B' in backfile:
                 output = input + subjectid + "_timestamped_predictions.csv"
+                print('start prediction')
                 complete_end_to_end_prediction(backfile, thighfile, output, sampling_frequency=freq)
+                print('done prediction')
                 # output >> sent to make summaries & pretty
-                startrecording = re.search('%s(.*)%s' % ('_', '_'), backfile).group(1)
+                #startrecording = re.search('%s(.*)%s' % ('_', '_'), backfile).group(1)
                 summary_data_filename = create_summary(output, subjectid, path, startrecording)
-                create_barplot(summary_data_filename, subjectid, path, startrecording)
+                #create_barplot(summary_data_filename, subjectid, path, startrecording)
                 # remove folder ../tmp
                 #shutil.rmtree(path + "tmp")
 
@@ -62,7 +64,6 @@ for i, row in folders.iterrows():
     foldername = folders.loc[i, "foldername"]
     path = "huntdata/" + foldername + "/"
     subjectpath = path + "*"
-    print('foldername', foldername)
     create_predictions(foldername, foldername, 100)
 
     end = datetime.now()
