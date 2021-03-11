@@ -11,17 +11,18 @@ root_dir = os.path.dirname(os.path.abspath(__file__))
 def print_weekly_view(filename):
 
     #maxSampleDay = 14400 # 14400 for 50Hz - assumes only missing data the first and the last day
-    maxSampleDay = 28800 # 28800 for 100Hz - assumes only missing data the first and the last day
+    maxSampleDay = 17280 # 28800 for 100Hz - assumes only missing data the first and the last day
 
     subject_file = os.path.join(root_dir, filename)
     subjectid = list(map(int, re.findall('\d+', filename))).pop().__str__()
+    print(subjectid)
 
     labelled_timestamp = pd.read_csv(subject_file, parse_dates=[0], header=None, names=['timestamp', 'label'])
     labelled_timestamp['date'] = labelled_timestamp.loc[:, 'timestamp'].dt.date
-
-    labelled_timestamp = labelled_timestamp.replace({'label': Dictinaries.merge_classes})
+    print(labelled_timestamp)
 
     days = labelled_timestamp['date'].drop_duplicates()
+    print(days)
 
     #classes
     # 1:walking
@@ -36,15 +37,17 @@ def print_weekly_view(filename):
     no_to_color_dict = {
         1: "forestgreen",
         2: "red",
+        3: "red",
+        4: "forestgreen",
+        5: "black",
         6: "lightyellow",
         7: "lightcyan",
         8: "skyblue",
-        13: "darkorange",
-        99: "white"
+        9: "darkorange",
+        20: "darkorange"
       }
 
     labelled_timestamp = labelled_timestamp.replace({'label':no_to_color_dict})
-
     first_day = labelled_timestamp.loc[labelled_timestamp['date'] == days.iloc[0]]
     first_day = first_day[['timestamp', 'label']]
     first_day = first_day.set_index('timestamp')
@@ -84,7 +87,7 @@ def print_weekly_view(filename):
 
     a = ['', '2:24am', '4:48am', '7:12am', '9:36am', '12pm', '2:24pm', '4:48pm', '7:12pm', '9:36pm']
     ax.set_xticklabels(a)
-    cb0.set_label('Date: '+ days.iloc[0].__str__() +' (orange: cycling, red: running, green: walking, yellow: standing, light blue:sitting, blue: lying)')
+    cb0.set_label('Date: '+ days.iloc[0].__str__() +' (orange: transition, red: vigorous activity, green: walking, yellow: standing, light blue:sitting)')
 
     # now later you get a new subplot; change the geometry of the existing
     for c in range(no_of_days-1):
@@ -92,7 +95,6 @@ def print_weekly_view(filename):
         one_day = labelled_timestamp.loc[labelled_timestamp['date'] == days.iloc[current]]
         one_day = one_day[['timestamp', 'label']]
         one_day = one_day.set_index('timestamp')
-
         if (one_day.count().__int__() < maxSampleDay):
             missingdatapoints = maxSampleDay - one_day.count().__int__()
             # create new data frame
@@ -116,7 +118,7 @@ def print_weekly_view(filename):
                                         norm=norm,
                                         orientation='horizontal')
         ax.set_xticklabels(a)
-        cb0.set_label('Date: '+ days.iloc[current].__str__() +' (orange: cycling, red: running, green: walking, yellow: standing, light blue:sitting, blue: lying)')
+        cb0.set_label('Date: '+ days.iloc[current].__str__() +' (orange: transition, red: vigorous activity, green: walking, yellow: standing, light blue:sitting)')
 
     # shift subplots down:
     st.set_y(0.95)
